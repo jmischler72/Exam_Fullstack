@@ -36,4 +36,7 @@ public class RestaurantEntity {
     @OneToMany(mappedBy = "restaurant")
     private List<EvaluationEntity> evaluations;
 
+    @OneToOne(mappedBy = "restaurantEvaluationFinale")
+    private EvaluationFinaleEntity evaluationFinale;
+
 }

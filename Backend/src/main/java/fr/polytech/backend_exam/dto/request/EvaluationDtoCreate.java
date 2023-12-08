@@ -25,4 +25,8 @@ public class EvaluationDtoCreate {
     @NotNull(message = "note may not be null")
     @JsonProperty("note")
     private Integer note;
+
+    @NotNull(message = "restaurantId may not be null")
+    @JsonProperty("restaurantId")
+    private Integer restaurantId;
 }

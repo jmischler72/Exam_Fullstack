@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EvaluationService {
     private final EvaluationRepository evaluationRepository;
+    private final RestaurantService restaurantService;
     private final S3Service s3Service;
 
 
@@ -39,6 +40,7 @@ public class EvaluationService {
                 .note(evaluationDtoCreate.getNote())
                 .dateCreation(LocalDate.now())
                 .dateUpdate(LocalDate.now())
+                .restaurant(restaurantService.getRestaurant(evaluationDtoCreate.getRestaurantId()))
                 .build();
 
         evaluationRepository.save(evaluationEntity);

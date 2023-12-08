@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, mergeMap, Observable, of} from "rxjs";
-import {RestaurantDTO} from "../types/restaurant.types";
-import {RestaurantCreateDTO, RestaurantUpdateDTO} from "../types/evaluation.types";
+import {RestaurantCreateDTO, RestaurantDTO, RestaurantUpdateDTO} from "../types/restaurant.types";
 
 @Injectable({
   providedIn: 'root'

@@ -55,6 +55,8 @@ public class EvaluationService {
         if (evaluationDtoUpdate.getEvaluateur() != null) evaluation.setCommentaire(evaluationDtoUpdate.getEvaluateur());
         if (evaluationDtoUpdate.getNote() != null) evaluation.setNote(evaluationDtoUpdate.getNote());
 
+        evaluation.setDateUpdate(LocalDate.now());
+
         evaluationRepository.save(evaluation);
 
         return evaluation;

@@ -28,6 +28,7 @@ public class RestaurantService {
         final RestaurantEntity restaurantEntity = RestaurantEntity.builder()
                 .nom(restaurantDtoCreate.getNom())
                 .adresse(restaurantDtoCreate.getAdresse())
+                .tags(restaurantDtoCreate.getTags())
                 .build();
 
         restaurantRepository.save(restaurantEntity);

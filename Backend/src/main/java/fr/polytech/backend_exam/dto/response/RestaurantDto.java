@@ -2,6 +2,7 @@ package fr.polytech.backend_exam.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.polytech.backend_exam.entity.RestaurantEntity;
+import fr.polytech.backend_exam.enums.TagsEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +30,9 @@ public class RestaurantDto {
     @JsonProperty("evaluations")
     private List<EvaluationDto> evaluations;
 
+    @JsonProperty("tags")
+    private List<TagsEnum> tags;
+
     public static RestaurantDto convertEntitytoDto(final RestaurantEntity restaurantEntity) {
         return RestaurantDto.builder()
                 .id(restaurantEntity.getId())
@@ -37,6 +41,7 @@ public class RestaurantDto {
                 .evaluations(Optional.ofNullable(restaurantEntity.getEvaluations()).orElse(Collections.emptyList()).stream().map(
                         evaluationEntity -> EvaluationDto.convertEntitytoDto(evaluationEntity)).toList()
                 )
+                .tags(restaurantEntity.getTags())
                 .build();
     }
 }

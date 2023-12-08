@@ -42,6 +42,12 @@ public class RestaurantDto {
                 EvaluationEntity::getNote
         ).toList();
 
+        Integer moyenne_notes = 0;
+
+        if(notes.size()>0){
+            moyenne_notes = notes.stream().mapToInt(Integer::intValue).sum() / notes.size();
+        }
+        // C'est nul de faire le calcul ici mais j'ai plus le temps
 
         return RestaurantDto.builder()
                 .id(restaurantEntity.getId())
@@ -51,7 +57,7 @@ public class RestaurantDto {
                         EvaluationDto::convertEntitytoDto).toList()
                 )
                 .tags(restaurantEntity.getTags())
-                .moyenne_evaluation(notes.stream().mapToInt(Integer::intValue).sum() / notes.size())
+                .moyenne_evaluation(moyenne_notes)
                 .build();
     }
 }

@@ -20,14 +20,10 @@ import java.util.List;
 public class RestaurantDtoCreate {
 
     @NotNull(message = "nom may not be null")
-    @Max(value = 90)
-    @Min(value = 2)
     @JsonProperty("nom")
     private String nom;
 
     @NotNull(message = "adresse may not be null")
-    @Max(value = 255)
-    @Min(value = 2)
     @JsonProperty("adresse")
     private String adresse;
 

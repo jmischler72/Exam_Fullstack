@@ -12,10 +12,9 @@ spring:
             hibernate:
                 dialect: "org.hibernate.dialect.H2Dialect"
 s3:
-    accesskey: "VuHtZ5Cl5gLInCfACP5D"
-    secretkey: "NOibQ7qdGlMyEypU286w5H3NbnIZVqWslfoh2SJe"
-    endpoint: "http://127.0.0.1:9000/"
+    accesskey: "hI2na8J1hHFEN7u5ijvl"
+    secretkey: "sUVdSRgYfwnstqsPFh9S4gE7qVyd59BqRI4dP9LE"
+    endpoint: "http://92.222.10.101:9000/"
     bucketName:
-        cover: "exocover"
-        screenshot: "exoscreenshot"
-        acteur: "exoacteur"
+        illustrations: "examillustrations"
+        photos: "examphotos"

@@ -35,6 +35,13 @@ public class RestaurantEntity {
     )
     private String adresse;
 
+    @Column(
+            name = "image",
+            columnDefinition = "boolean default false",
+            nullable = false
+    )
+    private boolean image = false;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "tags")
     @Column(name = "tags", nullable = false)

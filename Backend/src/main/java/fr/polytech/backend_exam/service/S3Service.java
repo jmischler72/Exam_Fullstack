@@ -28,11 +28,11 @@ public class S3Service {
         }
     }
 
-    public String getImageUrl(Integer id, String acteurBucket) {
-        return this.getPresignedUrl(Method.GET, acteurBucket, String.valueOf(id));
+    public String getImageUrl(String imageName, String bucket) {
+        return this.getPresignedUrl(Method.GET, bucket, imageName);
     }
 
-    public String putImageUrl(Integer id, String acteurBucket) {
-        return this.getPresignedUrl(Method.PUT, acteurBucket, String.valueOf(id));
+    public String putImageUrl(String imageName, String bucket) {
+        return this.getPresignedUrl(Method.PUT, bucket, imageName);
     }
 }

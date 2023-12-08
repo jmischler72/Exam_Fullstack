@@ -45,19 +45,13 @@ public class RestaurantController {
         return this.restaurantService.deleteRestaurant(id);
     }
 
-//    @PutMapping("/acteurs/{id}/image")
-//    public @ResponseBody MessageDto putImage(@PathVariable Integer id) {
-//        return MessageDto.builder()
-//                .code("GET_IMAGE_URL")
-//                .message(this.acteurService.putImage(id))
-//                .build();
-//    }
-//
-//    @GetMapping("/acteurs/{id}/image")
-//    public @ResponseBody MessageDto getImage(@PathVariable Integer id) {
-//        return MessageDto.builder()
-//                .code("GET_IMAGE_URL")
-//                .message(this.acteurService.getImage(id))
-//                .build();
-//    }
+    @GetMapping("/restaurants/{id}/get_image_url")
+    public @ResponseBody String getGetImageUrl(@PathVariable Integer id) {
+        return this.restaurantService.getGetImageUrl(id);
+    }
+
+    @GetMapping("/restaurants/{id}/put_image_url")
+    public @ResponseBody String getPutImageUrl(@PathVariable Integer id) {
+        return this.restaurantService.getPutImageUrl(id);
+    }
 }

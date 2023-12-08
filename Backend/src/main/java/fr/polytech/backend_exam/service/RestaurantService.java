@@ -7,6 +7,7 @@ import fr.polytech.backend_exam.entity.RestaurantEntity;
 import fr.polytech.backend_exam.exception.ResourceNotFoundException;
 import fr.polytech.backend_exam.repository.RestaurantRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
+    private final S3Service s3Service;
+
+    @Value("${s3.bucketName.illustrations}")
+    public final String illustrationsBucket = null;
 
     public List<RestaurantEntity> getRestaurants() {
         return restaurantRepository.findAll();
@@ -56,5 +61,23 @@ public class RestaurantService {
         }
         this.restaurantRepository.delete(restaurant);
         return "Le restaurant " + id +" vient d'être supprimé";
+    }
+
+    public String getGetImageUrl(Integer id) {
+        RestaurantEntity restaurant = this.getRestaurant(id);
+
+        if(!restaurant.isImage()) {
+            throw new ResourceNotFoundException("Le restaurant n'a pas d'image");
+        }
+
+        return s3Service.getImageUrl("jmischler72-restaurants-" + id, illustrationsBucket);
+    }
+
+    public String getPutImageUrl(Integer id) {
+        RestaurantEntity restaurant = this.getRestaurant(id);
+
+        restaurant.setImage(true);
+        restaurantRepository.save(restaurant);
+        return s3Service.putImageUrl("jmischler72-restaurants-" + id, illustrationsBucket);
     }
 }

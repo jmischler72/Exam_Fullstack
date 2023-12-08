@@ -1,6 +1,7 @@
 package fr.polytech.backend_exam.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.polytech.backend_exam.entity.EvaluationEntity;
 import fr.polytech.backend_exam.entity.RestaurantEntity;
 import fr.polytech.backend_exam.enums.TagsEnum;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,9 @@ public class RestaurantDto {
     @JsonProperty("adresse")
     private String adresse;
 
+    @JsonProperty("moyenne_evaluation")
+    private Integer moyenne_evaluation;
+
     @JsonProperty("evaluations")
     private List<EvaluationDto> evaluations;
 
@@ -34,14 +38,20 @@ public class RestaurantDto {
     private List<TagsEnum> tags;
 
     public static RestaurantDto convertEntitytoDto(final RestaurantEntity restaurantEntity) {
+        List<Integer> notes = Optional.ofNullable(restaurantEntity.getEvaluations()).orElse(Collections.emptyList()).stream().map(
+                EvaluationEntity::getNote
+        ).toList();
+
+
         return RestaurantDto.builder()
                 .id(restaurantEntity.getId())
                 .nom(restaurantEntity.getNom())
                 .adresse(restaurantEntity.getAdresse())
                 .evaluations(Optional.ofNullable(restaurantEntity.getEvaluations()).orElse(Collections.emptyList()).stream().map(
-                        evaluationEntity -> EvaluationDto.convertEntitytoDto(evaluationEntity)).toList()
+                        EvaluationDto::convertEntitytoDto).toList()
                 )
                 .tags(restaurantEntity.getTags())
+                .moyenne_evaluation(notes.stream().mapToInt(Integer::intValue).sum() / notes.size())
                 .build();
     }
 }

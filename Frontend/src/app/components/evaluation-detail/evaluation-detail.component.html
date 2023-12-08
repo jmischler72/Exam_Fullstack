@@ -1,0 +1,24 @@
+<ul *ngIf="evaluation">
+  <li>
+    {{evaluation.evaluateur}}
+  </li>
+  <li>
+    {{evaluation.commentaire}}
+  </li>
+
+  <li>
+    {{evaluation.dateCreation}}
+  </li>
+
+  <li>
+    {{evaluation.dateUpdate}}
+  </li>
+
+  <li>
+    {{evaluation.note}}
+  </li>
+
+  <li>
+    <button (click)="deleteEval(evaluation.id)"> Suppr</button>
+  </li>
+</ul>

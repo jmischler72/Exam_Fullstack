@@ -38,8 +38,8 @@ export class RestaurantsComponent implements OnInit{
   }
 
   private getImage(restaurant: RestaurantDTO): void {
-    this.restaurantService.getImageUrl(restaurant.id).subscribe(url => {
-      restaurant.imageUrl = url;
+    this.restaurantService.getImageUrl(restaurant.id).subscribe(imageDTO => {
+      restaurant.imageUrl = imageDTO.url;
     })
   }
 

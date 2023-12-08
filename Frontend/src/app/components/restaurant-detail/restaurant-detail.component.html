@@ -1,5 +1,9 @@
+<button [routerLink]="['']">Home</button>
+
 <div *ngIf="restaurant; else noRestaurant">
-  <img style="margin-right: 10px" *ngIf="imageUrl" [src]="imageUrl" alt="{{restaurant.id}}"/>
+  <app-restaurants-form (emitRestaurant)="updateRestaurant($event)" [restaurant]="restaurant"></app-restaurants-form>
+
+  <img style="margin-right: 10px; height: 120px" *ngIf="imageUrl" [src]="imageUrl" alt="{{restaurant.id}}"/>
   <ul>
     <li>
       {{restaurant.nom}}
@@ -12,6 +16,17 @@
     </li>
 
   </ul>
+</div>
+<p>Evaluations : </p>
+
+<div *ngFor="let evaluation of restaurant?.evaluations">
+  <app-evaluation-detail [evaluation]="evaluation" ></app-evaluation-detail>
+</div>
+
+<input type="file" (change)="onChange($event)" #input />
+
+<div *ngIf="file">
+  <button (click)="onUpload(input)">Upload the file</button>
 </div>
 
 <ng-template #noRestaurant>

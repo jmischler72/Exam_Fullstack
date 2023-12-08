@@ -22,7 +22,7 @@ export class RestaurantsFormComponent {
     tags: []
   };
 
-  @Output() public createRestaurant: EventEmitter<RestaurantCreateDTO> = new EventEmitter();
+  @Output() public emitRestaurant: EventEmitter<RestaurantCreateDTO> = new EventEmitter();
 
   tags: string[] = ["Bistronomique", "Gastronomique", "Bistrot", "Brasserie", "Fastfood"];
 
@@ -34,7 +34,7 @@ export class RestaurantsFormComponent {
   public submit(form: NgForm): void {
     if (form.valid) {
       console.log(this.restaurant);
-      this.createRestaurant.emit(this.restaurant)
+      this.emitRestaurant.emit(this.restaurant)
       form.reset(this.restaurant)
     }
   }

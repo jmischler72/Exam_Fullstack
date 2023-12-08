@@ -1,7 +1,6 @@
 <p>works</p>
 <div>
   <div *ngFor="let restaurant of restaurants">
-    <img style="margin-right: 10px" *ngIf="restaurant.imageUrl" [src]="restaurant.imageUrl" alt="{{restaurant.id}}"/>
     <ul>
       <li>
         {{restaurant.nom}}

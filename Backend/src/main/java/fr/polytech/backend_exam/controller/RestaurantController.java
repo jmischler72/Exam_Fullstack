@@ -2,6 +2,7 @@ package fr.polytech.backend_exam.controller;
 
 import fr.polytech.backend_exam.dto.request.RestaurantDtoCreate;
 import fr.polytech.backend_exam.dto.request.RestaurantDtoUpdate;
+import fr.polytech.backend_exam.dto.response.ImageDto;
 import fr.polytech.backend_exam.dto.response.RestaurantDto;
 import fr.polytech.backend_exam.service.RestaurantService;
 
@@ -46,12 +47,12 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants/{id}/get_image_url")
-    public @ResponseBody String getRestaurantGetImageUrl(@PathVariable Integer id) {
-        return this.restaurantService.getRestaurantGetImageUrl(id);
+    public @ResponseBody ImageDto getRestaurantGetImageUrl(@PathVariable Integer id) {
+        return ImageDto.builder().url(this.restaurantService.getRestaurantGetImageUrl(id)).build();
     }
 
     @GetMapping("/restaurants/{id}/put_image_url")
-    public @ResponseBody String getRestaurantPutImageUrl(@PathVariable Integer id) {
-        return this.restaurantService.getRestaurantPutImageUrl(id);
+    public @ResponseBody ImageDto getRestaurantPutImageUrl(@PathVariable Integer id) {
+        return ImageDto.builder().url(this.restaurantService.getRestaurantPutImageUrl(id)).build();
     }
 }

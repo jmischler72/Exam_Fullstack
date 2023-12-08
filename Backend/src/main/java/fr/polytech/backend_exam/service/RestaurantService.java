@@ -1,6 +1,8 @@
 package fr.polytech.backend_exam.service;
 
 import fr.polytech.backend_exam.dto.request.RestaurantDtoCreate;
+import fr.polytech.backend_exam.dto.request.RestaurantDtoUpdate;
+import fr.polytech.backend_exam.entity.EvaluationEntity;
 import fr.polytech.backend_exam.entity.RestaurantEntity;
 import fr.polytech.backend_exam.exception.ResourceNotFoundException;
 import fr.polytech.backend_exam.repository.RestaurantRepository;
@@ -33,5 +35,26 @@ public class RestaurantService {
 
         restaurantRepository.save(restaurantEntity);
         return restaurantEntity;
+    }
+
+    public RestaurantEntity editRestaurant(Integer id, RestaurantDtoUpdate restaurantDtoUpdate) {
+        final RestaurantEntity restaurant = this.getRestaurant(id);
+
+        if(restaurantDtoUpdate.getNom() != null) restaurant.setNom(restaurantDtoUpdate.getNom());
+        if(restaurantDtoUpdate.getTags() != null) restaurant.setTags(restaurantDtoUpdate.getTags());
+        if(restaurantDtoUpdate.getAdresse() != null) restaurant.setAdresse(restaurantDtoUpdate.getAdresse());
+
+        restaurantRepository.save(restaurant);
+
+        return restaurant;
+    }
+
+    public String deleteRestaurant(Integer id) {
+        RestaurantEntity restaurant = this.getRestaurant(id);
+        for(EvaluationEntity evaluation : restaurant.getEvaluations()) {
+            restaurant.getEvaluations().remove(evaluation);
+        }
+        this.restaurantRepository.delete(restaurant);
+        return "Le restaurant " + id +" vient d'être supprimé";
     }
 }

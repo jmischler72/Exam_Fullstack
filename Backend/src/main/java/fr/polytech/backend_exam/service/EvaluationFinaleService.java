@@ -1,6 +1,7 @@
 package fr.polytech.backend_exam.service;
 
 import fr.polytech.backend_exam.dto.request.EvaluationFinaleDtoCreate;
+import fr.polytech.backend_exam.dto.request.EvaluationFinaleDtoUpdate;
 import fr.polytech.backend_exam.entity.EvaluationFinaleEntity;
 import fr.polytech.backend_exam.exception.ResourceNotFoundException;
 import fr.polytech.backend_exam.repository.EvaluationFinaleRepository;
@@ -33,5 +34,24 @@ public class EvaluationFinaleService {
 
         evaluationFinaleRepository.save(evaluationFinaleEntity);
         return evaluationFinaleEntity;
+    }
+
+    public EvaluationFinaleEntity editEvaluationFinale(Integer id, EvaluationFinaleDtoUpdate evaluationFinaleDtoUpdate) {
+        final EvaluationFinaleEntity evaluationFinale = this.getEvaluationFinale(id);
+
+        if(evaluationFinaleDtoUpdate.getNoteFinale() != null) evaluationFinale.setNoteFinale(evaluationFinaleDtoUpdate.getNoteFinale());
+        if(evaluationFinaleDtoUpdate.getDecideur() != null) evaluationFinale.setDecideur(evaluationFinaleDtoUpdate.getDecideur());
+        if(evaluationFinaleDtoUpdate.getQualites() != null) evaluationFinale.setQualites(evaluationFinaleDtoUpdate.getQualites());
+
+        evaluationFinaleRepository.save(evaluationFinale);
+
+        return evaluationFinale;
+    }
+
+    public String deleteEvaluationFinale(Integer id) {
+        EvaluationFinaleEntity evaluation = this.getEvaluationFinale(id);
+
+        this.evaluationFinaleRepository.delete(evaluation);
+        return "L'évaluation finale " + id +" vient d'être supprimé";
     }
 }

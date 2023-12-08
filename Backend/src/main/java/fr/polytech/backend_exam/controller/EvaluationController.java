@@ -1,6 +1,7 @@
 package fr.polytech.backend_exam.controller;
 
 import fr.polytech.backend_exam.dto.request.EvaluationDtoCreate;
+import fr.polytech.backend_exam.dto.request.EvaluationDtoUpdate;
 import fr.polytech.backend_exam.dto.response.EvaluationDto;
 import fr.polytech.backend_exam.service.EvaluationService;
 import jakarta.validation.Valid;
@@ -30,6 +31,16 @@ public class EvaluationController {
     @PostMapping("/evaluations")
     public @ResponseBody EvaluationDto addEvaluation(@Valid @RequestBody EvaluationDtoCreate evaluationDtoCreate) {
         return EvaluationDto.convertEntitytoDto(evaluationService.addEvaluation(evaluationDtoCreate));
+    }
+
+    @PutMapping("/evaluations/{id}")
+    public @ResponseBody EvaluationDto editEvaluation(@PathVariable Integer id, @Valid @RequestBody EvaluationDtoUpdate evaluationDtoUpdate) {
+        return EvaluationDto.convertEntitytoDto(evaluationService.editEvaluation(id, evaluationDtoUpdate));
+    }
+
+    @DeleteMapping("/evaluations/{id}")
+    public @ResponseBody String deleteEvaluation(@PathVariable Integer id) {
+        return this.evaluationService.deleteEvaluation(id);
     }
 
 }

@@ -1,6 +1,7 @@
 package fr.polytech.backend_exam.controller;
 
 import fr.polytech.backend_exam.dto.request.EvaluationFinaleDtoCreate;
+import fr.polytech.backend_exam.dto.request.EvaluationFinaleDtoUpdate;
 import fr.polytech.backend_exam.dto.response.EvaluationFinaleDto;
 import fr.polytech.backend_exam.service.EvaluationFinaleService;
 import jakarta.validation.Valid;
@@ -23,13 +24,23 @@ public class EvaluationFinaleController {
     }
 
     @GetMapping("/evaluationsFinales/{id}")
-    public @ResponseBody EvaluationFinaleDto getEvaluation(@PathVariable Integer id) {
+    public @ResponseBody EvaluationFinaleDto getEvaluationFinale(@PathVariable Integer id) {
         return EvaluationFinaleDto.convertEntitytoDto(evaluationFinaleService.getEvaluationFinale(id));
     }
 
     @PostMapping("/evaluationsFinales")
-    public @ResponseBody EvaluationFinaleDto addEvaluation(@Valid @RequestBody EvaluationFinaleDtoCreate evaluationFinaleDtoCreate) {
+    public @ResponseBody EvaluationFinaleDto addEvaluationFinale(@Valid @RequestBody EvaluationFinaleDtoCreate evaluationFinaleDtoCreate) {
         return EvaluationFinaleDto.convertEntitytoDto(evaluationFinaleService.addEvaluationFinale(evaluationFinaleDtoCreate));
+    }
+
+    @PutMapping("/evaluationsFinales/{id}")
+    public @ResponseBody EvaluationFinaleDto editEvaluationFinale(@PathVariable Integer id, @Valid @RequestBody EvaluationFinaleDtoUpdate evaluationFinaleDtoUpdate) {
+        return EvaluationFinaleDto.convertEntitytoDto(evaluationFinaleService.editEvaluationFinale(id, evaluationFinaleDtoUpdate));
+    }
+
+    @DeleteMapping("/evaluationsFinales/{id}")
+    public @ResponseBody String deleteEvaluationFinale(@PathVariable Integer id) {
+        return this.evaluationFinaleService.deleteEvaluationFinale(id);
     }
 
 }

@@ -1,0 +1,7 @@
+<p>works</p>
+<div>
+  <div *ngFor="let restaurant of restaurants" >
+    <img *ngIf="restaurant.imageUrl" [src]="restaurant.imageUrl" alt="{{restaurant.id}}"/>
+    <span>{{restaurant.nom}} {{restaurant.adresse}}</span>
+  </div>
+</div>

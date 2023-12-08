@@ -26,6 +26,9 @@ public class EvaluationDto {
     @JsonProperty("note")
     private Integer note;
 
+    @JsonProperty("commentaire")
+    private String commentaire;
+
     @JsonProperty("dateCreation")
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateCreation;
@@ -45,6 +48,7 @@ public class EvaluationDto {
                 .dateCreation(evaluationEntity.getDateCreation())
                 .dateUpdate(evaluationEntity.getDateUpdate())
                 .images(evaluationEntity.getImages())
+                .commentaire(evaluationEntity.getCommentaire())
                 .build();
     }
 }

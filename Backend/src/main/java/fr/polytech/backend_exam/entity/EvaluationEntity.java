@@ -51,8 +51,7 @@ public class EvaluationEntity {
 
     @Column(
             name = "dateUpdate",
-            columnDefinition = "date",
-            nullable = false
+            columnDefinition = "date"
     )
     private LocalDate dateUpdate;
 

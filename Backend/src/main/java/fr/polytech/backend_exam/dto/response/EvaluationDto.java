@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
@@ -35,7 +35,7 @@ public class EvaluationDto {
     private LocalDate dateUpdate;
 
     @JsonProperty("images")
-    private Set<String> images;
+    private List<String> images;
 
     public static EvaluationDto convertEntitytoDto(final EvaluationEntity evaluationEntity) {
         return EvaluationDto.builder()

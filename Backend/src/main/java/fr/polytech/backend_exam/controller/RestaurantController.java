@@ -20,7 +20,7 @@ public class RestaurantController {
     @GetMapping("/restaurants")
     public @ResponseBody List<RestaurantDto> getRestaurants() {
         return restaurantService.getRestaurants().stream().map(
-                restaurant -> RestaurantDto.convertEntitytoDto(restaurant)
+                RestaurantDto::convertEntitytoDto
         ).toList();
     }
 
@@ -46,12 +46,12 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants/{id}/get_image_url")
-    public @ResponseBody String getGetImageUrl(@PathVariable Integer id) {
-        return this.restaurantService.getGetImageUrl(id);
+    public @ResponseBody String getRestaurantGetImageUrl(@PathVariable Integer id) {
+        return this.restaurantService.getRestaurantGetImageUrl(id);
     }
 
     @GetMapping("/restaurants/{id}/put_image_url")
-    public @ResponseBody String getPutImageUrl(@PathVariable Integer id) {
-        return this.restaurantService.getPutImageUrl(id);
+    public @ResponseBody String getRestaurantPutImageUrl(@PathVariable Integer id) {
+        return this.restaurantService.getRestaurantPutImageUrl(id);
     }
 }

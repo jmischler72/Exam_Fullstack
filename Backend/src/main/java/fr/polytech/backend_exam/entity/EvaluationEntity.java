@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Data
@@ -43,24 +43,23 @@ public class EvaluationEntity {
     private Integer note;
 
     @Column(
-            name = "dateCreation",
+            name = "date_creation",
             columnDefinition = "date",
             nullable = false
     )
     private LocalDate dateCreation;
 
     @Column(
-            name = "dateUpdate",
+            name = "date_update",
             columnDefinition = "date"
     )
     private LocalDate dateUpdate;
 
 
     @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "images",
-            joinColumns = @JoinColumn(name = "image_id"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"image_id"}))
-    private Set<String> images = new HashSet<>();
+    @CollectionTable(name = "evaluation_images")
+    @Column(name = "images")
+    private List<String> images = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private RestaurantEntity restaurant;

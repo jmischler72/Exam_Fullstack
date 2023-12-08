@@ -63,7 +63,7 @@ public class RestaurantService {
         return "Le restaurant " + id +" vient d'être supprimé";
     }
 
-    public String getGetImageUrl(Integer id) {
+    public String getRestaurantGetImageUrl(Integer id) {
         RestaurantEntity restaurant = this.getRestaurant(id);
 
         if(!restaurant.isImage()) {
@@ -73,7 +73,7 @@ public class RestaurantService {
         return s3Service.getImageUrl("jmischler72-restaurants-" + id, illustrationsBucket);
     }
 
-    public String getPutImageUrl(Integer id) {
+    public String getRestaurantPutImageUrl(Integer id) {
         RestaurantEntity restaurant = this.getRestaurant(id);
 
         restaurant.setImage(true);

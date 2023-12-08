@@ -19,7 +19,7 @@ public class EvaluationController {
     @GetMapping("/evaluations")
     public @ResponseBody List<EvaluationDto> getEvaluations() {
         return evaluationService.getEvaluations().stream().map(
-                evaluation -> EvaluationDto.convertEntitytoDto(evaluation)
+                EvaluationDto::convertEntitytoDto
         ).toList();
     }
 
@@ -41,6 +41,16 @@ public class EvaluationController {
     @DeleteMapping("/evaluations/{id}")
     public @ResponseBody String deleteEvaluation(@PathVariable Integer id) {
         return this.evaluationService.deleteEvaluation(id);
+    }
+
+    @GetMapping("/evaluations/{id}/get_image_url")
+    public @ResponseBody List<String> getRestaurantGetImageUrl(@PathVariable Integer id) {
+        return this.evaluationService.getEvaluationGetImageUrls(id);
+    }
+
+    @GetMapping("/evaluations/{id}/put_image_url")
+    public @ResponseBody String getRestaurantPutImageUrl(@PathVariable Integer id) {
+        return this.evaluationService.getEvaluationPutImageUrl(id);
     }
 
 }

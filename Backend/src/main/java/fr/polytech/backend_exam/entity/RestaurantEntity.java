@@ -43,7 +43,7 @@ public class RestaurantEntity {
     private boolean image = false;
 
     @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "tags")
+    @CollectionTable(name = "restaurant_tags")
     @Column(name = "tags", nullable = false)
     private List<TagsEnum> tags = new ArrayList<>();
 

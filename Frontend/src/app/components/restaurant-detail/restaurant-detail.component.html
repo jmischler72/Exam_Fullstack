@@ -1,0 +1,22 @@
+<div *ngIf="restaurant; else noRestaurant">
+  <img style="margin-right: 10px" *ngIf="imageUrl" [src]="imageUrl" alt="{{restaurant.id}}"/>
+  <ul>
+    <li>
+      {{restaurant.nom}}
+    </li>
+    <li>
+      {{restaurant.adresse}}
+    </li>
+    <li>
+      <span>Note moyenne : {{restaurant.evaluations.length > 0 ? restaurant.moyenne_evaluation : '/' }}</span>
+    </li>
+
+  </ul>
+</div>
+
+<ng-template #noRestaurant>
+  <span>
+  Pas de restaurant avec cet id
+  </span>
+</ng-template>
+

@@ -1,23 +1,23 @@
-import {TagsEnum} from "./tags.enum";
 import {EvaluationDTO} from "./evaluation.types";
 
 export interface RestaurantCreateDTO {
   nom: string,
   adresse: string,
-  tags?: TagsEnum[],
+  tags: string[],
 }
 
 export interface RestaurantUpdateDTO {
   nom?: string,
   adresse?: string,
-  tags?: TagsEnum[],
+  tags?: string[],
 }
 
 export interface RestaurantDTO {
   id: number
   nom: string,
-  adresse: string
-  evaluation: EvaluationDTO[],
-  tags: TagsEnum[],
+  adresse: string,
+  moyenne_evaluation: number,
+  evaluations: EvaluationDTO[],
+  tags: string[],
   imageUrl?: string,
 }

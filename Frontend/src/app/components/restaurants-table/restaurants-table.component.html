@@ -1,7 +1,22 @@
 <p>works</p>
 <div>
-  <div *ngFor="let restaurant of restaurants" >
-    <img *ngIf="restaurant.imageUrl" [src]="restaurant.imageUrl" alt="{{restaurant.id}}"/>
-    <span>{{restaurant.nom}} {{restaurant.adresse}}</span>
+  <div *ngFor="let restaurant of restaurants">
+    <img style="margin-right: 10px" *ngIf="restaurant.imageUrl" [src]="restaurant.imageUrl" alt="{{restaurant.id}}"/>
+    <ul>
+      <li>
+        {{restaurant.nom}}
+      </li>
+      <li>
+        {{restaurant.adresse}}
+      </li>
+      <li>
+        <span>Note moyenne : {{restaurant.evaluations.length >0 ? restaurant.moyenne_evaluation: '/' }}</span>
+      </li>
+      <li>
+        <button [routerLink]="['restaurant', restaurant.id]">
+          Detail
+        </button>
+      </li>
+    </ul>
   </div>
 </div>

@@ -1,0 +1,21 @@
+<form #form="ngForm" (ngSubmit)="submit(form)" *ngIf="restaurant">
+  <div>
+    <label for="nom">Nom&nbsp;:</label>
+    <input id="nom" type="text" name="nom" #nom="ngModel" [(ngModel)]="restaurant.nom" maxlength="90" required>
+    <span style="color:#e74c3c" *ngIf="!nom.valid && nom.errors?.['required'] && nom.dirty">Le champs est requis</span>
+    <span style="color:#e74c3c" *ngIf="!nom.valid && nom.errors?.['maxlength'] && nom.dirty">Le champs est trop long</span>
+  </div>
+  <div>
+    <label for="adresse">Adresse :</label>
+    <input id="adresse" type="text" name="adresse" #adresse="ngModel" [(ngModel)]="restaurant.adresse" maxlength="255" required>
+    <span style="color:#e74c3c" *ngIf="!adresse.valid && adresse.errors?.['required'] && adresse.dirty">Le champs est requis</span>
+    <span style="color:#e74c3c" *ngIf="!adresse.valid && adresse.errors?.['maxlength'] && adresse.dirty">Le champs est trop long</span>
+  </div>
+
+  <div *ngFor="let tag of tags">
+    <input [value]="tag" type="checkbox" (change)="onCheckChange($event)" id="{{tag}}">
+    <label for="{{tag}}">{{tag}}</label>
+  </div>
+
+  <input type="submit" value="Valider" [disabled]="!(adresse.valid && nom.valid)" />
+</form>
